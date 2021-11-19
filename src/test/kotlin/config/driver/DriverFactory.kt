@@ -21,6 +21,7 @@ import org.openqa.selenium.safari.SafariOptions
 import java.util.logging.Level
 
 class DriverFactory {
+    private val userAgent = PropertiesReader().getProp("chrome.user.agent") ?: "unsupported"
 
     fun get(requestedDriver: Browsers?): WebDriver {
         return webDriver[requestedDriver!!]?.invoke() ?: default()
@@ -89,6 +90,7 @@ class DriverFactory {
         .addArguments("--dns-prefetch-disable")
         .addArguments("disable-infobars")
         .addArguments("--disable-dev-shm-usage")
+        .addArguments("user-agent=$userAgent")
         .merge(capabilities())
 
     private fun capabilities(): DesiredCapabilities {

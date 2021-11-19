@@ -1,7 +1,6 @@
 package tests.search
 
 import config.annotations.Browser
-import config.annotations.Browsers
 import config.driver.Breakpoint
 import org.fluentlenium.assertj.FluentLeniumAssertions.assertThat
 import org.fluentlenium.core.annotation.Page

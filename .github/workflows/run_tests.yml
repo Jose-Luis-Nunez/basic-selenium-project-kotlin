@@ -26,4 +26,4 @@ jobs:
           java-version: 11
 
       - name: Run Tests on Chrome
-        run: ./gradlew test -Dbrowser=chrome
+        run: ./gradlew test -Dbrowser=chrome-headless
