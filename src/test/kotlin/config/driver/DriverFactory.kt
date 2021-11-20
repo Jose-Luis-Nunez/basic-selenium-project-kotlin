@@ -91,7 +91,11 @@ class DriverFactory {
         .addArguments("disable-infobars")
         .addArguments("--disable-extensions")
         .addArguments("--disable-dev-shm-usage")
-        .addArguments("start-maximized")
+        .addArguments("--start-maximized")
+        .addArguments("--disable-popup-blocking")
+        .addArguments("--lang=de")
+        .addArguments("--incognito")
+        .addArguments("--ignore-certificate-errors")
         .addArguments("user-agent=$userAgent")
         .merge(capabilities())
 
