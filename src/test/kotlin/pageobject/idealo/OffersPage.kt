@@ -1,4 +1,4 @@
-package pageobject.search
+package pageobject.idealo
 
 import org.fluentlenium.core.domain.FluentList
 import org.fluentlenium.core.domain.FluentWebElement

@@ -1,18 +1,18 @@
-package pageobject.search
+package pageobject.github
 
 import org.fluentlenium.core.annotation.PageUrl
 import org.fluentlenium.core.domain.FluentWebElement
 import org.openqa.selenium.support.FindBy
 import pageobject.AbstractScreen
 
-@PageUrl("https://www.idealo.de/")
-class StartPage : AbstractScreen() {
+@PageUrl("https://github.com/")
+class GithubStartPage : AbstractScreen() {
 
     @FindBy(css = "input[name='q']")
     private lateinit var searchfield: FluentWebElement
 
-    fun searchForProduct(product: String) {
-        searchfield.type(product)
+    fun searchForUser(user: String) {
+        searchfield.type(user)
         searchfield.submit()
     }
 }

@@ -42,10 +42,10 @@ class DriverFactory {
     }
 
     private fun chrome(): WebDriver {
-        val proxyadd = "213.136.89.121:80"
+        val proxyString = "213.136.89.121:80"
         val proxy = Proxy()
-        proxy.httpProxy = proxyadd
-        proxy.sslProxy = proxyadd
+        proxy.httpProxy = proxyString
+        proxy.sslProxy = proxyString
         chromeOptions().setCapability("proxy", proxy);
         WebDriverManager.chromedriver().setup()
         return ChromeDriver(chromeOptions())

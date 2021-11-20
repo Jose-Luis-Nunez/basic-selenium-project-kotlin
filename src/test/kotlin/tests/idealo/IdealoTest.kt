@@ -1,17 +1,18 @@
-package tests.search
+package tests.idealo
 
 import config.annotations.Browser
 import config.driver.Breakpoint
 import org.fluentlenium.assertj.FluentLeniumAssertions.assertThat
 import org.fluentlenium.core.annotation.Page
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import pageobject.search.OffersPage
-import pageobject.search.ProductPage
-import pageobject.search.StartPage
+import pageobject.idealo.OffersPage
+import pageobject.idealo.ProductPage
+import pageobject.idealo.StartPage
 import tests.SeleniumTest
 
 @Browser(dimension = Breakpoint.XXLARGE)
-class SearchProductTest : SeleniumTest() {
+class IdealoTest : SeleniumTest() {
 
     @Page
     lateinit var startPage: StartPage
@@ -22,6 +23,7 @@ class SearchProductTest : SeleniumTest() {
     @Page
     lateinit var offersPage: OffersPage
 
+    @Disabled
     @Test
     fun `test search for product`() {
         startPage {

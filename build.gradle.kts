@@ -20,13 +20,11 @@ dependencies {
         name = "junit-jupiter",
         version = jUnitVersion
     )
-
     testImplementation(
         group = "org.seleniumhq.selenium",
         name = "selenium-java",
         version = seleniumVersion
     )
-
     testImplementation(
         group = "io.github.bonigarcia",
         name = "webdrivermanager",
@@ -61,11 +59,6 @@ dependencies {
         group = "it.skrape",
         name = "skrapeit",
         version = skrapeitVersion
-    )
-    testImplementation(
-        group = "net.andreinc",
-        name = "mockneat",
-        version = "0.4.7"
     )
 }
 
