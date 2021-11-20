@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-    val fluentleniumVersion = "3.10.1"
+    val fluentleniumVersion = "4.8.0"
     val seleniumVersion = "3.141.59"
     val webdriverManagerVersion = "5.0.3"
     val jUnitVersion = "5.7.2"

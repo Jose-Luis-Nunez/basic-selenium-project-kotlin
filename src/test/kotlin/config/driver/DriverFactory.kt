@@ -1,8 +1,8 @@
 package config.driver
 
-import config.annotations.Browsers
 import config.utils.PropertiesReader
 import io.github.bonigarcia.wdm.WebDriverManager
+import org.openqa.selenium.Proxy
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
@@ -42,6 +42,11 @@ class DriverFactory {
     }
 
     private fun chrome(): WebDriver {
+        val proxyadd = "84.57.254.179"
+        val proxy = Proxy()
+        proxy.httpProxy = proxyadd
+        proxy.sslProxy = proxyadd
+        chromeOptions().setCapability("proxy", proxy);
         WebDriverManager.chromedriver().setup()
         return ChromeDriver(chromeOptions())
     }

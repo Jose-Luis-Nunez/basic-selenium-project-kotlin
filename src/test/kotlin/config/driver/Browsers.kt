@@ -1,4 +1,4 @@
-package config.annotations
+package config.driver
 
 enum class Browsers(val value: String) {
     FIREFOX("firefox"),
