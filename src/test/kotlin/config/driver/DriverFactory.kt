@@ -89,7 +89,9 @@ class DriverFactory {
         .addArguments("--disable-gpu")
         .addArguments("--dns-prefetch-disable")
         .addArguments("disable-infobars")
+        .addArguments("--disable-extensions")
         .addArguments("--disable-dev-shm-usage")
+        .addArguments("start-maximized")
         .addArguments("user-agent=$userAgent")
         .merge(capabilities())
 
