@@ -11,7 +11,7 @@ enum class Browsers(val value: String) {
     DEFAULT("");
 
     companion object {
-        fun byString(s: String) = Browsers.values().find { it.value == s }
+        fun byString(s: String) = values().find { it.value == s }
             ?: throw RuntimeException("invalid browser '$s' requested")
     }
 }
