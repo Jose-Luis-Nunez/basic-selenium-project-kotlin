@@ -2,7 +2,6 @@ package tests.check24
 
 import config.annotations.Browser
 import config.driver.Breakpoint
-import config.driver.Browsers
 import org.fluentlenium.assertj.FluentLeniumAssertions.assertThat
 import org.fluentlenium.core.annotation.Page
 import org.junit.jupiter.api.Test
