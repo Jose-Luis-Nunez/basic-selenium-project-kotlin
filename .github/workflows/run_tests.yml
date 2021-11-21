@@ -42,5 +42,5 @@ jobs:
         with:
           java-version: 11
 
-      - name: Run Tests on Chrome
+      - name: Run Tests on Firefox
         run: ./gradlew test -Dbrowser=firefox-headless
