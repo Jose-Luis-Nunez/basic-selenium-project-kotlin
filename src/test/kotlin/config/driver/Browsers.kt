@@ -2,6 +2,7 @@ package config.driver
 
 enum class Browsers(val value: String) {
     FIREFOX("firefox"),
+    FIREFOX_HEADLESS("firefox-headless"),
     CHROME("chrome"),
     CHROME_HEADLESS("chrome-headless"),
     SAFARI("safari"),

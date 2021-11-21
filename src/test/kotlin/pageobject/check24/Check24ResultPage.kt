@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy
 import pageobject.AbstractScreen
 
 class Check24ResultPage : AbstractScreen() {
+
     @FindBy(css = ".HeaderResult__orange")
     private lateinit var header: FluentWebElement
 

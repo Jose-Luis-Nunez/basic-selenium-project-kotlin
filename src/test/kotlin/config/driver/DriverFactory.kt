@@ -30,15 +30,20 @@ class DriverFactory {
     private val webDriver: Map<Browsers, () -> WebDriver> = mapOf(
         Browsers.CHROME_HEADLESS to { chromeHeadless() },
         Browsers.FIREFOX to { firefox() },
+        Browsers.FIREFOX_HEADLESS to { firefoxHeadless() },
         Browsers.CHROME to { chrome() },
         Browsers.SAFARI to { safari() },
         Browsers.OPERA to { opera() },
-        Browsers.EDGE to { edge() }
     )
 
     private fun firefox(): WebDriver {
         WebDriverManager.firefoxdriver().setup()
         return FirefoxDriver(firefoxOptions())
+    }
+
+    private fun firefoxHeadless(): WebDriver {
+        WebDriverManager.firefoxdriver().setup()
+        return FirefoxDriver(firefoxOptions().setHeadless(true))
     }
 
     private fun chrome(): WebDriver {
@@ -59,11 +64,6 @@ class DriverFactory {
     private fun opera(): WebDriver {
         WebDriverManager.operadriver().setup()
         return OperaDriver(operaOptions())
-    }
-
-    private fun edge(): WebDriver {
-        WebDriverManager.edgedriver().setup()
-        return EdgeDriver(edgeOptions())
     }
 
     private fun safari(): WebDriver {
@@ -89,7 +89,6 @@ class DriverFactory {
     private fun firefoxOptions() = FirefoxOptions().merge(capabilities())
     private fun operaOptions() = OperaOptions().merge(capabilities())
     private fun safariOptions() = SafariOptions().merge(capabilities())
-    private fun edgeOptions() = EdgeOptions().merge(capabilities())
     private fun chromeOptions() = ChromeOptions()
         .addArguments("--disable-gpu")
         .addArguments("--dns-prefetch-disable")

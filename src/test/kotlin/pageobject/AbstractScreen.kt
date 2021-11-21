@@ -35,4 +35,8 @@ abstract class AbstractScreen : FluentPage() {
     fun waitUntilElementDisplayed(elements: FluentList<FluentWebElement>) {
         await().atMost(WAIT_TIME, TimeUnit.SECONDS).until(elements).displayed()
     }
+
+    fun waitUntilElementNotDisplayed(element: FluentWebElement) {
+        await().atMost(WAIT_TIME, TimeUnit.SECONDS).until(element).not().displayed()
+    }
 }
