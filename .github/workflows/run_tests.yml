@@ -1,4 +1,4 @@
-name: CI
+name: Selenium tests
 
 on:
   push:
@@ -8,6 +8,25 @@ on:
 
 jobs:
   chrome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Gradle Wraper Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/wrapper/
+          key: ${{ runner.OS }}-gradle-wraper-cache
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Run Tests on Chrome
+        run: ./gradlew test -Dbrowser=chrome-headless
+
+  firefox:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
