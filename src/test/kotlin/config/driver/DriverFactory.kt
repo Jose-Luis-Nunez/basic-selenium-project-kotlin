@@ -6,6 +6,8 @@ import org.openqa.selenium.Proxy
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
+import org.openqa.selenium.edge.EdgeDriver
+import org.openqa.selenium.edge.EdgeOptions
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.firefox.FirefoxOptions
 import org.openqa.selenium.logging.LogType
@@ -22,17 +24,25 @@ class DriverFactory {
     private val userAgent = PropertiesReader().getProp("chrome.user.agent") ?: "unsupported"
 
     fun get(requestedDriver: Browsers?): WebDriver {
-        return webDriver[requestedDriver!!]?.invoke() ?: default()
+        return webDriver(requestedDriver)
     }
 
-    private val webDriver: Map<Browsers, () -> WebDriver> = mapOf(
-        Browsers.CHROME_HEADLESS to { chromeHeadless() },
-        Browsers.FIREFOX to { firefox() },
-        Browsers.FIREFOX_HEADLESS to { firefoxHeadless() },
-        Browsers.CHROME to { chrome() },
-        Browsers.SAFARI to { safari() },
-        Browsers.OPERA to { opera() },
-    )
+    private fun webDriver(requestedDriver: Browsers?): WebDriver {
+        return when (requestedDriver) {
+            Browsers.CHROME_HEADLESS -> chromeHeadless()
+            Browsers.CHROME -> chrome()
+            Browsers.FIREFOX -> firefox()
+            Browsers.FIREFOX_HEADLESS -> firefoxHeadless()
+            Browsers.SAFARI -> safari()
+            Browsers.OPERA -> opera()
+            Browsers.EDGE -> edge()
+            Browsers.DEFAULT,
+            null -> default()
+        }.exhaustive
+    }
+
+    private val <T> T.exhaustive: T
+        get() = this
 
     private fun firefox(): WebDriver {
         WebDriverManager.firefoxdriver().setup()
@@ -68,8 +78,13 @@ class DriverFactory {
         return SafariDriver(safariOptions())
     }
 
+    private fun edge(): WebDriver {
+        WebDriverManager.edgedriver().setup()
+        return EdgeDriver(edgeOptions())
+    }
+
     private fun default(): WebDriver {
-        return webDriver[getDefaultBrowser()]?.invoke() ?: throw RuntimeException("Invalid Browser requested")
+        return webDriver(getDefaultBrowser())
     }
 
     private fun getDefaultBrowser(): Browsers {
@@ -87,6 +102,7 @@ class DriverFactory {
     private fun firefoxOptions() = FirefoxOptions().merge(capabilities())
     private fun operaOptions() = OperaOptions().merge(capabilities())
     private fun safariOptions() = SafariOptions().merge(capabilities())
+    private fun edgeOptions() = EdgeOptions().merge(capabilities())
     private fun chromeOptions() = ChromeOptions()
         .addArguments("--disable-gpu")
         .addArguments("--dns-prefetch-disable")
