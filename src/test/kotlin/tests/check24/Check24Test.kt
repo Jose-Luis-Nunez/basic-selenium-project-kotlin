@@ -2,7 +2,6 @@ package tests.check24
 
 import config.annotations.Browser
 import config.driver.Breakpoint
-import config.driver.Driver
 import org.fluentlenium.assertj.FluentLeniumAssertions.assertThat
 import org.fluentlenium.core.annotation.Page
 import org.junit.jupiter.api.Test
@@ -10,7 +9,7 @@ import pageobject.check24.Check24ResultPage
 import pageobject.check24.Check24StartPage
 import tests.SeleniumTest
 
-@Browser(dimension = Breakpoint.XXLARGE, use = Driver.CHROME)
+@Browser(dimension = Breakpoint.XXLARGE)
 class Check24Test : SeleniumTest() {
 
     @Page
