@@ -1,6 +1,6 @@
 package config.driver
 
-enum class Browsers(val value: String) {
+enum class Driver(val value: String) {
     FIREFOX("firefox"),
     FIREFOX_HEADLESS("firefox-headless"),
     CHROME("chrome"),
@@ -11,7 +11,7 @@ enum class Browsers(val value: String) {
     DEFAULT("");
 
     companion object {
-        fun byString(s: String) = values().find { it.value == s }
-            ?: throw RuntimeException("invalid browser '$s' requested")
+        fun byString(browserString: String) = values().find { it.value == browserString }
+            ?: throw RuntimeException("invalid browser '$browserString' requested")
     }
 }

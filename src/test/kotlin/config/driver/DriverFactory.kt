@@ -1,5 +1,6 @@
 package config.driver
 
+import config.driver.Driver.*
 import config.utils.PropertiesReader
 import io.github.bonigarcia.wdm.WebDriverManager
 import org.openqa.selenium.Proxy
@@ -23,26 +24,23 @@ import java.util.logging.Level
 class DriverFactory {
     private val userAgent = PropertiesReader().getProp("chrome.user.agent") ?: "unsupported"
 
-    fun get(requestedDriver: Browsers?): WebDriver {
+    fun get(requestedDriver: Driver?): WebDriver {
         return webDriver(requestedDriver)
     }
 
-    private fun webDriver(requestedDriver: Browsers?): WebDriver {
+    private fun webDriver(requestedDriver: Driver?): WebDriver {
         return when (requestedDriver) {
-            Browsers.CHROME_HEADLESS -> chromeHeadless()
-            Browsers.CHROME -> chrome()
-            Browsers.FIREFOX -> firefox()
-            Browsers.FIREFOX_HEADLESS -> firefoxHeadless()
-            Browsers.SAFARI -> safari()
-            Browsers.OPERA -> opera()
-            Browsers.EDGE -> edge()
-            Browsers.DEFAULT,
+            CHROME_HEADLESS -> chromeHeadless()
+            CHROME -> chrome()
+            FIREFOX -> firefox()
+            FIREFOX_HEADLESS -> firefoxHeadless()
+            SAFARI -> safari()
+            OPERA -> opera()
+            EDGE -> edge()
+            DEFAULT,
             null -> default()
         }.exhaustive
     }
-
-    private val <T> T.exhaustive: T
-        get() = this
 
     private fun firefox(): WebDriver {
         WebDriverManager.firefoxdriver().setup()
@@ -59,7 +57,7 @@ class DriverFactory {
         val proxy = Proxy()
         proxy.httpProxy = proxyString
         proxy.sslProxy = proxyString
-        chromeOptions().setCapability("proxy", proxy);
+        chromeOptions().setCapability("proxy", proxy)
         WebDriverManager.chromedriver().setup()
         return ChromeDriver(chromeOptions())
     }
@@ -87,16 +85,16 @@ class DriverFactory {
         return webDriver(getDefaultBrowser())
     }
 
-    private fun getDefaultBrowser(): Browsers {
+    private fun getDefaultBrowser(): Driver {
         val invokedBrowser = System.getProperty("browser").orEmpty()
 
         if (invokedBrowser.isNotBlank()) {
-            return Browsers.byString(invokedBrowser)
+            return Driver.byString(invokedBrowser)
         }
 
         val defaultBrowser: String = PropertiesReader().getProp("default.browser") ?: "unsupported"
 
-        return Browsers.byString(defaultBrowser)
+        return Driver.byString(defaultBrowser)
     }
 
     private fun firefoxOptions() = FirefoxOptions().merge(capabilities())
@@ -126,4 +124,7 @@ class DriverFactory {
 
         return capabilities
     }
+
+    private val <T> T.exhaustive: T
+        get() = this
 }
