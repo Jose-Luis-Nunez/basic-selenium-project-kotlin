@@ -16,11 +16,6 @@ dependencies {
     val skrapeitVersion = "1.1.6"
 
     testImplementation(
-        group = "org.junit.jupiter",
-        name = "junit-jupiter",
-        version = jUnitVersion
-    )
-    testImplementation(
         group = "org.seleniumhq.selenium",
         name = "selenium-java",
         version = seleniumVersion
