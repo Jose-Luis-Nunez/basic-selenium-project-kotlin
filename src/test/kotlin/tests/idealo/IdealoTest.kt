@@ -1,7 +1,5 @@
 package tests.idealo
 
-import config.annotations.Browser
-import config.driver.Breakpoint
 import org.fluentlenium.assertj.FluentLeniumAssertions.assertThat
 import org.fluentlenium.core.annotation.Page
 import org.junit.jupiter.api.Disabled
@@ -11,7 +9,6 @@ import pageobject.idealo.ProductPage
 import pageobject.idealo.StartPage
 import tests.SeleniumTest
 
-@Browser(dimension = Breakpoint.XXLARGE)
 class IdealoTest : SeleniumTest() {
 
     @Page
