@@ -27,5 +27,4 @@ class Check24Test : SeleniumTest() {
         }
         assertThat(resultPage.getHeader()).isDisplayed
     }
-
 }
