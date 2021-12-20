@@ -32,4 +32,5 @@ class IdealoTest : SeleniumTest() {
         }
         assertThat(offersPage.getProductOffer()).isDisplayed
     }
+
 }
