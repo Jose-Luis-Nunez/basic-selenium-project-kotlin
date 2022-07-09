@@ -15,7 +15,6 @@ import org.openqa.selenium.logging.LogType
 import org.openqa.selenium.logging.LoggingPreferences
 import org.openqa.selenium.opera.OperaDriver
 import org.openqa.selenium.opera.OperaOptions
-import org.openqa.selenium.remote.CapabilityType
 import org.openqa.selenium.remote.DesiredCapabilities
 import org.openqa.selenium.safari.SafariDriver
 import org.openqa.selenium.safari.SafariOptions
@@ -116,13 +115,12 @@ class DriverFactory {
         .merge(capabilities())
 
     private fun capabilities(): DesiredCapabilities {
-        val capabilities = DesiredCapabilities()
         val logPrefs = LoggingPreferences().apply { enable(LogType.BROWSER, Level.ALL) }
 
-        capabilities.setCapability(CapabilityType.LOGGING_PREFS, logPrefs)
-        capabilities.isJavascriptEnabled = true
-
-        return capabilities
+        return DesiredCapabilities().apply {
+            setCapability(ChromeOptions.LOGGING_PREFS, logPrefs)
+            setCapability("acceptInsecureCerts", true)
+        }
     }
 
     private val <T> T.exhaustive: T
