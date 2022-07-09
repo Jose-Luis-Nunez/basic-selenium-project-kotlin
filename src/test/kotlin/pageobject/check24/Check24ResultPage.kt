@@ -6,7 +6,7 @@ import pageobject.AbstractScreen
 
 class Check24ResultPage : AbstractScreen() {
 
-    @FindBy(css = ".HeaderResult__orange")
+    @FindBy(css = ".result-header__headline")
     private lateinit var header: FluentWebElement
 
     fun getHeader(): FluentWebElement {
