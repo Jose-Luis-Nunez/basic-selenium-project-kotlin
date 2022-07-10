@@ -7,26 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-#  chrome:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v1
-#
-#      - name: Gradle Wraper Cache
-#        uses: actions/cache@v1
-#        with:
-#          path: ~/.gradle/wrapper/
-#          key: ${{ runner.OS }}-gradle-wraper-cache
-#
-#      - name: Set up JDK
-#        uses: actions/setup-java@v1
-#        with:
-#          java-version: 17
-#
-#      - name: Run Tests on Chrome
-#        run: ./gradlew test -Dbrowser=chrome-headless
-
-  firefox:
+  chrome:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -42,5 +23,5 @@ jobs:
         with:
           java-version: 17
 
-      - name: Run Tests on Firefox
-        run: ./gradlew test -Dbrowser=firefox-headless
+      - name: Run Tests on Chrome
+        run: ./gradlew test -Dbrowser=chrome-headless

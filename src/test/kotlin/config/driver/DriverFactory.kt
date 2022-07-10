@@ -2,7 +2,9 @@ package config.driver
 
 import config.driver.Driver.*
 import config.utils.PropertiesReader
-import io.github.bonigarcia.wdm.WebDriverManager
+import io.github.bonigarcia.wdm.WebDriverManager.chromedriver
+import io.github.bonigarcia.wdm.WebDriverManager.edgedriver
+import io.github.bonigarcia.wdm.WebDriverManager.firefoxdriver
 import org.openqa.selenium.Proxy
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
@@ -39,12 +41,12 @@ class DriverFactory {
     }
 
     private fun firefox(): WebDriver {
-        WebDriverManager.firefoxdriver().setup()
+        firefoxdriver().setup()
         return FirefoxDriver(firefoxOptions())
     }
 
     private fun firefoxHeadless(): WebDriver {
-        WebDriverManager.firefoxdriver().setup()
+        firefoxdriver().setup()
         return FirefoxDriver(firefoxOptions().setHeadless(true))
     }
 
@@ -54,12 +56,12 @@ class DriverFactory {
         proxy.httpProxy = proxyString
         proxy.sslProxy = proxyString
         chromeOptions().setCapability("proxy", proxy)
-        WebDriverManager.chromedriver().setup()
+        chromedriver().setup()
         return ChromeDriver(chromeOptions())
     }
 
     private fun chromeHeadless(): WebDriver {
-        WebDriverManager.chromedriver().setup()
+        chromedriver().setup()
         return ChromeDriver(chromeOptions().setHeadless(true))
     }
 
@@ -68,7 +70,7 @@ class DriverFactory {
     }
 
     private fun edge(): WebDriver {
-        WebDriverManager.edgedriver().setup()
+        edgedriver().setup()
         return EdgeDriver(edgeOptions())
     }
 
