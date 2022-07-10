@@ -6,7 +6,6 @@ enum class Driver(val value: String) {
     CHROME("chrome"),
     CHROME_HEADLESS("chrome-headless"),
     SAFARI("safari"),
-    OPERA("opera"),
     EDGE("edge"),
     DEFAULT("");
 

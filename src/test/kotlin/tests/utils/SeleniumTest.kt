@@ -1,22 +1,18 @@
-package tests
+package tests.utils
 
 import config.annotations.Browser
 import config.annotations.Screenshot
 import config.driver.Breakpoint
 import config.driver.DriverFactory
-import mu.KotlinLogging
 import org.fluentlenium.adapter.junit.jupiter.FluentTest
 import org.fluentlenium.configuration.ConfigurationProperties
 import org.fluentlenium.core.FluentPage
 import org.junit.jupiter.api.BeforeEach
 import org.openqa.selenium.Dimension
 import org.openqa.selenium.WebDriver
-import org.openqa.selenium.support.events.EventFiringWebDriver
-import java.util.concurrent.TimeUnit
+import java.time.Duration.ofSeconds
 
 open class SeleniumTest : FluentTest() {
-
-    private val logger = KotlinLogging.logger {}
 
     private val timeout = Integer.getInteger("page_load_timeout", 30).toLong()
 
@@ -25,15 +21,12 @@ open class SeleniumTest : FluentTest() {
     private fun requestedDriver() = javaClass.getAnnotation(Browser::class.java)?.use
 
     override fun newWebDriver(): WebDriver {
-
-        val currentDriver = driverFactory.get(requestedDriver())
-
-        currentDriver.manage().timeouts().pageLoadTimeout(timeout, TimeUnit.SECONDS)
-        currentDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS)
-        currentDriver.manage().timeouts().setScriptTimeout(15, TimeUnit.SECONDS)
-        currentDriver.manage().window().maximize()
-
-        return EventFiringWebDriver(currentDriver)
+        return driverFactory.get(requestedDriver()).apply {
+            manage().timeouts().pageLoadTimeout(ofSeconds(timeout))
+            manage().timeouts().implicitlyWait(ofSeconds(timeout))
+            manage().timeouts().scriptTimeout(ofSeconds(15L))
+            manage().window().maximize()
+        }
     }
 
     @BeforeEach
@@ -41,21 +34,6 @@ open class SeleniumTest : FluentTest() {
         screenshotMode = screenshotMode()
         screenshotPath = "build/screenshots"
         awaitAtMost = 30_000
-
-        events().beforeClickOn { element, _ ->
-            executeScript("arguments[0].style.border = '3px solid red'; ", element.element)
-        }
-
-        events().beforeNavigateTo { url, _ ->
-            logger.info { "open URL $url" }
-        }
-
-        events().afterNavigateTo { url, _ ->
-            logger.info { "opened URL $url" }
-            logger.info { "window title: ${window().title()}" }
-        }
-
-        driver.manage().deleteAllCookies()
     }
 
     private fun screenshotMode(): ConfigurationProperties.TriggerMode {

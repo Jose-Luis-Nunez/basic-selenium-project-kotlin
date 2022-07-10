@@ -13,8 +13,6 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.firefox.FirefoxOptions
 import org.openqa.selenium.logging.LogType
 import org.openqa.selenium.logging.LoggingPreferences
-import org.openqa.selenium.opera.OperaDriver
-import org.openqa.selenium.opera.OperaOptions
 import org.openqa.selenium.remote.DesiredCapabilities
 import org.openqa.selenium.safari.SafariDriver
 import org.openqa.selenium.safari.SafariOptions
@@ -34,7 +32,6 @@ class DriverFactory {
             FIREFOX -> firefox()
             FIREFOX_HEADLESS -> firefoxHeadless()
             SAFARI -> safari()
-            OPERA -> opera()
             EDGE -> edge()
             DEFAULT,
             null -> default()
@@ -66,11 +63,6 @@ class DriverFactory {
         return ChromeDriver(chromeOptions().setHeadless(true))
     }
 
-    private fun opera(): WebDriver {
-        WebDriverManager.operadriver().setup()
-        return OperaDriver(operaOptions())
-    }
-
     private fun safari(): WebDriver {
         return SafariDriver(safariOptions())
     }
@@ -97,7 +89,6 @@ class DriverFactory {
     }
 
     private fun firefoxOptions() = FirefoxOptions().merge(capabilities())
-    private fun operaOptions() = OperaOptions().merge(capabilities())
     private fun safariOptions() = SafariOptions().merge(capabilities())
     private fun edgeOptions() = EdgeOptions().merge(capabilities())
     private fun chromeOptions() = ChromeOptions()

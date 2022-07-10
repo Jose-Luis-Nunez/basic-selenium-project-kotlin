@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import pageobject.idealo.OffersPage
 import pageobject.idealo.ProductPage
 import pageobject.idealo.StartPage
-import tests.SeleniumTest
+import tests.utils.SeleniumTest
 
 class IdealoTest : SeleniumTest() {
 
