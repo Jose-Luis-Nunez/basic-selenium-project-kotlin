@@ -49,6 +49,7 @@ dependencies {
         name = "kotlin-logging",
         version = kotlinLoggerVersion
     )
+    implementation("com.willowtreeapps.assertk:assertk:0.25")
 }
 
 tasks {
