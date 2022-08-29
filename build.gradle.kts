@@ -8,9 +8,9 @@ repositories {
 
 dependencies {
     val fluentleniumVersion = "5.0.4"
-    val seleniumVersion = "4.2.2"
-    val webdriverManagerVersion = "5.2.0"
-    val jUnitVersion = "5.7.2"
+    val seleniumVersion = "4.4.0"
+    val webdriverManagerVersion = "5.3.0"
+    val jUnitVersion = "5.9.0"
     val julToSlf4jVersion = "1.7.28"
     val kotlinLoggerVersion = "1.7.6"
 
@@ -49,7 +49,6 @@ dependencies {
         name = "kotlin-logging",
         version = kotlinLoggerVersion
     )
-    implementation("com.willowtreeapps.assertk:assertk:0.25")
 }
 
 tasks {
