@@ -8,7 +8,7 @@ import org.fluentlenium.core.annotation.Page
 import org.junit.jupiter.api.Test
 import pageobject.check24.Check24ResultPage
 import pageobject.check24.Check24StartPage
-import tests.utils.SeleniumTest
+import tests.SeleniumTest
 
 @Browser(dimension = Breakpoint.XXLARGE, use = Driver.CHROME)
 class Check24Test : SeleniumTest() {

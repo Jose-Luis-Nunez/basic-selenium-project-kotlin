@@ -1,4 +1,4 @@
-package tests.utils
+package tests
 
 import config.annotations.Browser
 import config.annotations.Screenshot
@@ -24,7 +24,7 @@ open class SeleniumTest : FluentTest() {
         return driverFactory.get(requestedDriver()).apply {
             manage().timeouts().pageLoadTimeout(ofSeconds(timeout))
             manage().timeouts().implicitlyWait(ofSeconds(timeout))
-            manage().timeouts().scriptTimeout(ofSeconds(15L))
+            manage().timeouts().scriptTimeout(ofSeconds(timeout))
             manage().window().maximize()
         }
     }
