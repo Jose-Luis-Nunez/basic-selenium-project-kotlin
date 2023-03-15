@@ -94,6 +94,7 @@ class DriverFactory {
     private fun safariOptions() = SafariOptions().merge(capabilities())
     private fun edgeOptions() = EdgeOptions().merge(capabilities())
     private fun chromeOptions() = ChromeOptions()
+        .addArguments("--remote-allow-origins=*")
         .addArguments("--disable-gpu")
         .addArguments("--dns-prefetch-disable")
         .addArguments("disable-infobars")

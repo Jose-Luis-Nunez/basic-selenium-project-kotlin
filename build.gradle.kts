@@ -8,47 +8,19 @@ repositories {
 
 dependencies {
     val fluentleniumVersion = "5.0.4"
-    val seleniumVersion = "4.4.0"
-    val webdriverManagerVersion = "5.3.0"
+    val seleniumVersion = "4.8.1"
+    val webdriverManagerVersion = "5.3.2"
     val jUnitVersion = "5.9.0"
     val julToSlf4jVersion = "1.7.28"
     val kotlinLoggerVersion = "1.7.6"
 
-    testImplementation(
-        group = "org.seleniumhq.selenium",
-        name = "selenium-java",
-        version = seleniumVersion
-    )
-    testImplementation(
-        group = "io.github.bonigarcia",
-        name = "webdrivermanager",
-        version = webdriverManagerVersion
-    )
-    testImplementation(
-        group = "org.junit.jupiter",
-        name = "junit-jupiter",
-        version = jUnitVersion
-    )
-    testImplementation(
-        group = "org.fluentlenium",
-        name = "fluentlenium-junit-jupiter",
-        version = fluentleniumVersion
-    )
-    testImplementation(
-        group = "org.fluentlenium",
-        name = "fluentlenium-assertj",
-        version = fluentleniumVersion
-    )
-    testImplementation(
-        group = "org.slf4j",
-        name = "jul-to-slf4j",
-        version = julToSlf4jVersion
-    )
-    testImplementation(
-        group = "io.github.microutils",
-        name = "kotlin-logging",
-        version = kotlinLoggerVersion
-    )
+    testImplementation("org.seleniumhq.selenium:selenium-java:$seleniumVersion")
+    testImplementation("io.github.bonigarcia:webdrivermanager:$webdriverManagerVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter:$jUnitVersion")
+    testImplementation("org.fluentlenium:fluentlenium-junit-jupiter:$fluentleniumVersion")
+    testImplementation("org.fluentlenium:fluentlenium-assertj:$fluentleniumVersion")
+    testImplementation("org.slf4j:jul-to-slf4j:$julToSlf4jVersion")
+    testImplementation("io.github.microutils:kotlin-logging:$kotlinLoggerVersion")
 }
 
 tasks {
